@@ -10,7 +10,7 @@
 <body>
 
     <main>
-        <form action="form_handlers/index_form.php" method="post">
+        <form action="form_handlers/submit_new_book.php" method="post">
             <label for="title">Title:</label>
             <input id="title" type="text" name="title" placeholder="Title...">
             <br/>
