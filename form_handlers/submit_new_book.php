@@ -6,7 +6,7 @@
     $rating = htmlspecialchars($_POST["rating"]);
     $comments = htmlspecialchars($_POST["comments"]);
     
-    include __DIR__ . "../session_utils/get_connection.php";
+    include __DIR__ . "/../session_utils/get_connection.php";
     $conn = getConnection();
 
     $query = "INSERT INTO books (title, author, rating, comments) VALUES ($1, $2, $3, $4)";
@@ -27,5 +27,5 @@
 
     $_SESSION["insertSuccess"] = $success;
 
-    header("Location: ../index.php");
+    header("Location: ../library.php");
 }
