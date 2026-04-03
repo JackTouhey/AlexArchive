@@ -16,6 +16,7 @@
 
     <form action="form_handlers/update_book.php" method="post">
         <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
+        <input type="hidden" name="status" value="1">
 
         <label for="title">Title:</label>
         <input id="title" type="text" name="title" placeholder="<?php echo $book->title ?>">

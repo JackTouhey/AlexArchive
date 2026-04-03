@@ -4,7 +4,7 @@
         include __DIR__ . "/../model/book.php";
         $conn = getConnection();
 
-        $query = "SELECT id, title, author, rating, comments, status FROM books";
+        $query = "SELECT id, title, author, rating, comments, status FROM books ORDER BY id";
         $result = pg_query($conn, $query);
 
         if(!$result) {
