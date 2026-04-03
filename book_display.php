@@ -12,10 +12,29 @@
         $bookId = intval($_POST["book_id"]);
         include __DIR__ . "\session_utils\get_book.php";
         $book = getBook($bookId);
-
-        echo $book->id . " " . $book->title;
-        
     ?>
 
+    <form action="form_handlers/update_book.php" method="post">
+        <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
+
+        <label for="title">Title:</label>
+        <input id="title" type="text" name="title" placeholder="<?php echo $book->title ?>">
+        <br/>
+
+        <label for="author">Author:</label>
+        <input id="author" type="text" name="author" placeholder="<?php echo $book->author ?>">
+        <br/>
+
+        <label for="rating">Rating</label>
+        <input id="rating" type="number" name="rating" placeholder="<?php echo $book->rating ?>">
+        <br/>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comment" name="comments" rows="5" cols="25" placeholder="<?php echo $book->comments ?>"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="library.php">home</a>
 </body>
 </html>
