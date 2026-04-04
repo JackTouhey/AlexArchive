@@ -19,21 +19,44 @@
 
         <div class="col-1"></div>
 
-        <div class="col-10 shadow rounded-1">
-            <div class="d-flex flex-row justify-content-evenly">
+        <div class="col-10 shadow rounded-1 d-flex flex-column">
+            <!-- Header -->
+            <div class="row d-flex flex-row justify-content-evenly">
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row justif-content-center align-items-center me-0">
                     <i class="fa-solid fa-magnifying-glass fa-lg mp-2"></i>
                     <i class="fa-regular fa-square-plus fa-xl mp-2"></i>
                 </div>
-
             </div>
 
+            <?php 
+            $rows = array_chunk($library, 12);
+            foreach ($rows as $rowIndex => $rowBooks): 
+            ?>
+            <div class="col-12 d-flex flex-row justify-content-evenly">
+                <?php
+                    foreach ($rowBooks as $book): 
+                        $title = $book->title;
+                        $id = $book->id;
+                        $backgroundColour = $book->colour;
+                        $textColour = contrastColour($book->colour);
+                ?>
+                <form method="POST" action="book_display.php" class="col-1 width-100">
+                    <input type="hidden" name="book_id" value="<?= $id ?>">
+                    <button type="submit" style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>">
+                        <div class="book-label">
+                            <?= $id ?>
+                        </div>
+                    </button>
+                    
+                </form>
+                <?php endforeach; ?>
+            </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="col-1"></div>
 
     </div>
-    
 </body>
 </html>

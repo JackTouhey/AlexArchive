@@ -1,51 +1,6 @@
-.shelf-plank {
-    background: linear-gradient(180deg,
-        #A0742A 0px, #A0742A 4px,
-        #8B6914 4px, #8B6914 28px,
-        #5C3D0E 28px, #5C3D0E 34px);
-    box-shadow: 0 6px 18px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.12);
+.book-label {
+    transform: rotate(90deg);
 }
-
-/* Books sit above the plank; padding-bottom reveals the wood below them */
-.shelf-books-area {
-    padding-bottom: 34px;
-    padding-top: 12px;
-}
-
-/* Book spine */
-.book {
-    position: relative;
-    flex-shrink: 0;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-    transition: box-shadow .2s ease;
-}
-.book::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    width: 5px;
-    background: linear-gradient(to right, rgba(255,255,255,.18), rgba(255,255,255,.04));
-    border-radius: 2px 0 0 2px;
-    pointer-events: none;
-}
-.book::after {
-    content: '';
-    position: absolute;
-    top: 2px; bottom: 2px; right: -3px;
-    width: 3px;
-    background: repeating-linear-gradient(180deg,
-        #e8dcc8 0px, #e8dcc8 1px,
-        #c8b89a 1px, #c8b89a 2px);
-    border-radius: 0 1px 1px 0;
-}
-
-/* Rotated text inside the spine */
-.book-inner {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    height: 100%;
-    overflow: hidden;
+.width-100 {
+    width: 100%;
 }
