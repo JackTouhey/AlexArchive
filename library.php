@@ -25,10 +25,11 @@
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row justif-content-center align-items-center me-0">
                     <i class="fa-solid fa-magnifying-glass fa-lg mp-2"></i>
-                    <i class="fa-regular fa-square-plus fa-xl mp-2"></i>
+                    <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2"></i></a>
                 </div>
             </div>
 
+            <!-- Shelves -->
             <?php 
             $rows = array_chunk($library, 12);
             foreach ($rows as $rowIndex => $rowBooks): 

@@ -10,6 +10,9 @@
 <body>
 
     <main>
+        <?php
+            include __DIR__ . "\session_utils\generic_utils.php";
+        ?>
         <form action="form_handlers/submit_new_book.php" method="post">
             <label for="title">Title:</label>
             <input id="title" type="text" name="title" placeholder="Title...">
@@ -25,6 +28,9 @@
 
             <label for="comments">Comments:</label>
             <textarea id="comment" name="comments" rows="5" cols="25"></textarea>
+
+            <label for="colour">Colour</label>
+            <input type="color" id="colour" name="colour" value="<?= getRandomColour() ?>">
 
             <button type="submit">Submit</button>
         </form>
