@@ -42,13 +42,11 @@
                         $backgroundColour = $book->colour;
                         $textColour = contrastColour($book->colour);
                 ?>
-                <form method="POST" action="book_display.php" class="col-1 width-100">
+                <form method="POST" action="book_display.php" class="col-1">
                     <input type="hidden" name="book_id" value="<?= $id ?>">
-                    <button type="submit" style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>">
-                        <div class="book-label">
-                            <?= $id ?>
-                        </div>
-                    </button>
+                        <button type="submit" class="book-spine" style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>;">
+                            <?= $title ?>
+                        </button>
                     
                 </form>
                 <?php endforeach; ?>

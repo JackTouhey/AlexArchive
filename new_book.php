@@ -35,16 +35,7 @@
             <button type="submit">Submit</button>
         </form>
         <br/>
-        <?php 
-        session_start();
-            if (isset($_SESSION["insertSuccess"])) {
-                if($_SESSION["insertSuccess"]) {
-                    echo "Successfully inserted book";
-                } else {
-                    echo "Lmao that shit did NOT work";
-                }
-            }
-        ?>
+        <a href="library.php">home</a>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
