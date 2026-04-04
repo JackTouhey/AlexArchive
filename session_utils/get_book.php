@@ -11,7 +11,7 @@
         $result = pg_execute($conn, "insert_query", $values);
 
         if ($row = pg_fetch_row($result)) {
-            return new Book($row[0], $row[1], $row[2], $row[3], $row[4], intval($row[5]));
+            return Book::makeBookForDisplay($row[0], $row[1], $row[2], $row[3], $row[4], intval($row[5]));
         }
     }
 ?>
