@@ -5,16 +5,18 @@
     $author = htmlspecialchars($_POST["author"]);
     $rating = htmlspecialchars($_POST["rating"]);
     $comments = htmlspecialchars($_POST["comments"]);
+    $colour = htmlspecialchars($_POST["colour"]);
     
     include __DIR__ . "/../session_utils/get_connection.php";
     $conn = getConnection();
 
-    $query = "INSERT INTO books (title, author, rating, comments) VALUES ($1, $2, $3, $4)";
+    $query = "INSERT INTO books (title, author, rating, comments, colour, status) VALUES ($1, $2, $3, $4, $5, 1)";
     $values = [
         $title,
         $author,
         $rating,
-        $comments
+        $comments,
+        $colour
         ];
 
     pg_prepare($conn, "insert_query", $query);

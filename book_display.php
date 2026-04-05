@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/header.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -14,28 +16,48 @@
         $book = getBook($bookId);
     ?>
 
-    <form action="form_handlers/update_book.php" method="post">
-        <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
-        <input type="hidden" name="status" value="1">
 
-        <label for="title">Title:</label>
-        <input id="title" type="text" name="title" placeholder="<?php echo $book->title ?>">
-        <br/>
+    <div class="col-12 d-flex">
 
-        <label for="author">Author:</label>
-        <input id="author" type="text" name="author" placeholder="<?php echo $book->author ?>">
-        <br/>
+        <div class="col-1"></div>
 
-        <label for="rating">Rating</label>
-        <input id="rating" type="number" name="rating" placeholder="<?php echo $book->rating ?>">
-        <br/>
+        <div class="col-10 shadow rounded-1 d-flex flex-column flex-wrap">
+            <!-- Header - would be nice to have this as a component -->
+            <div class="row d-flex flex-row justify-content-evenly">
+                <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
+                <div class="col-1 d-flex flex-row align-items-center me-0">
+                    <a href="library.php"><i class="fa-solid fa-house fa-lg icon"></i></a>
+                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
+                    <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
+                </div>
+            </div>
 
-        <label for="comments">Comments:</label>
-        <textarea id="comment" name="comments" rows="5" cols="25" placeholder="<?php echo $book->comments ?>"></textarea>
+            <!-- Content -->
+            <div class="col-12 d-flex flex-row">
 
-        <button type="submit">Submit</button>
-    </form>
+                <!-- Book Details -->
+                <div class="col-8 d-flex flex-column justify-content-start p-4">
+                    <form action="book_edit.php" method="post">
+                        <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
+                        <button type="submit" class="btn btn-primary rounded-pill">Edit</button>
+                    </form>
 
-    <a href="library.php">home</a>
+                    <div class="fw-bold fs-1 mb-2"><?= $book->title; ?></div>
+                    <div class="fs-3 mb-2"><?= "By: " . $book->author; ?></div>
+                    <div class="fs-3 mb-2"><?= "Rating: " . $book->rating; ?></div>
+                    <div class="fs-3 mb-2">Comments:</div>
+                    <div class="p"><?= $book->comments ?></div>
+                </div>
+                
+                <!-- Cover display -->
+                <div class="col-4">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-1"></div>
+
+    </div>
 </body>
 </html>

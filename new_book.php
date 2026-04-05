@@ -10,6 +10,9 @@
 <body>
 
     <main>
+        <?php
+            include __DIR__ . "\session_utils\generic_utils.php";
+        ?>
         <form action="form_handlers/submit_new_book.php" method="post">
             <label for="title">Title:</label>
             <input id="title" type="text" name="title" placeholder="Title...">
@@ -25,20 +28,15 @@
 
             <label for="comments">Comments:</label>
             <textarea id="comment" name="comments" rows="5" cols="25"></textarea>
+            <br/>
+
+            <label for="colour">Colour</label>
+            <input type="color" id="colour" name="colour" value="<?= getRandomColour() ?>">
 
             <button type="submit">Submit</button>
         </form>
         <br/>
-        <?php 
-        session_start();
-            if (isset($_SESSION["insertSuccess"])) {
-                if($_SESSION["insertSuccess"]) {
-                    echo "Successfully inserted book";
-                } else {
-                    echo "Lmao that shit did NOT work";
-                }
-            }
-        ?>
+        <a href="library.php">home</a>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
