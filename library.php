@@ -6,6 +6,7 @@
     <title>Alex Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/library.css" rel="stylesheet">
+    <link href="resources/header.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,9 +24,9 @@
             <!-- Header -->
             <div class="row d-flex flex-row justify-content-evenly">
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
-                <div class="col-1 d-flex flex-row justif-content-center align-items-center me-0">
-                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2"></i>
-                    <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2"></i></a>
+                <div class="col-1 d-flex flex-row align-items-center me-0">
+                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
+                    <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
                 </div>
             </div>
 
