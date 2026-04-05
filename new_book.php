@@ -28,6 +28,7 @@
 
             <label for="comments">Comments:</label>
             <textarea id="comment" name="comments" rows="5" cols="25"></textarea>
+            <br/>
 
             <label for="colour">Colour</label>
             <input type="color" id="colour" name="colour" value="<?= getRandomColour() ?>">

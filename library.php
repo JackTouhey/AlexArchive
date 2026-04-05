@@ -19,7 +19,7 @@
 
         <div class="col-1"></div>
 
-        <div class="col-10 shadow rounded-1 d-flex flex-column">
+        <div class="col-10 shadow rounded-1 d-flex flex-column flex-wrap">
             <!-- Header -->
             <div class="row d-flex flex-row justify-content-evenly">
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
@@ -34,7 +34,8 @@
             $rows = array_chunk($library, 12);
             foreach ($rows as $rowIndex => $rowBooks): 
             ?>
-            <div class="col-12 d-flex flex-row justify-content-evenly">
+
+            <div class="col-12 d-flex flex-row justify-content-start">
                 <?php
                     foreach ($rowBooks as $book): 
                         $title = $book->title;
@@ -42,15 +43,16 @@
                         $backgroundColour = $book->colour;
                         $textColour = contrastColour($book->colour);
                 ?>
-                <form method="POST" action="book_display.php" class="col-1">
+                <form method="POST" action="book_display.php" class="col-1 ps-1 ms-1">
                     <input type="hidden" name="book_id" value="<?= $id ?>">
-                        <button type="submit" class="book-spine" style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>;">
+                        <button type="submit" class="book-spine fs-3" style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>;">
                             <?= $title ?>
                         </button>
-                    
                 </form>
                 <?php endforeach; ?>
             </div>
+
+            <div class="col-12 divider"></div>
             <?php endforeach; ?>
         </div>
 

@@ -22,16 +22,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     transition: filter 0.15s ease;
+    white-space: normal;
+    text-align: left;
 }
 
 .book-spine:hover {
     filter: brightness(1.12);
 }
-
-
 form.col-1 {
     height: 25rem;
-    width: 7rem;
-    padding: 0;
-    margin: 0 1px;
+    width: 7.1rem;
+}
+.divider {
+    height: 2rem;
 }
