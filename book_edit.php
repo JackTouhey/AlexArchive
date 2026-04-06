@@ -12,7 +12,7 @@
 
     <?php
         $bookId = intval($_POST["book_id"]);
-        include __DIR__ . "\session_utils\get_book.php";
+        include __DIR__ . "\session_utils\generic_utils.php";
         $book = getBook($bookId);
     ?>
 
@@ -56,7 +56,7 @@
                     </div>
                     
 
-                    <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
+                    <button type="submit" class="btn btn-primary rounded-pill mt-2">Submit</button>
                 </form>
 
             </div>
