@@ -41,32 +41,27 @@
                     <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
                     <input type="hidden" name="rating" id="ratingInput" value="<?= $rating ?>">
                     
-                    <input id="title" type="text" name="title" class="fw-bold fs-1 mb-2" placeholder="<?php echo $book->title ?>">
+                    <input id="title" type="text" name="title" class="fw-bold title mb-2 border-0 border-bottom border-secondary" value="<?php echo $book->title ?>">
+                    <input id="author" type="text" name="author" class="fs-3 mb-2 border-0 border-bottom border-secondary" value="<?php echo $book->author ?>">
 
-                    <div class="d-flex flex-row">
-                        <label for="author" class="fs-3 mb-2">By:</label>
-                        <input id="author" type="text" name="author" class="fs-3 mb-2 ms-2" placeholder="<?php echo $book->author ?>">
+
+                    <div class="d-flex flex-row justify-content-start" id="starRating">
+                        <?php for ($i = 1; $i <= 10; $i += 2): ?>
+                            <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap pointer <?= $i <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap mirrored pointer <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i + 1 ?>">
+                            </div>
+                        <?php endfor; ?>
                     </div>
-
-
-                        <div class="d-flex flex-row justify-content-start" id="starRating">
-                            <?php for ($i = 1; $i <= 10; $i += 2): ?>
-                                <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
-                                    <img src="resources/images/half-star.svg"
-                                        class="star-half-wrap pointer <?= $i <= $rating ? 'lit' : '' ?>"
-                                        data-value="<?= $i ?>">
-                                    <img src="resources/images/half-star.svg"
-                                        class="star-half-wrap mirrored pointer <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
-                                        data-value="<?= $i + 1 ?>">
-                                </div>
-                            <?php endfor; ?>
-                        </div>
                     
                     <div class="col-12" style="height: 2.5rem;"></div>
 
-                    <div class="d-flex flex-row align-items-center">
-                        <label for="comments" class="fs-3 mb-2">Comments:</label>
-                        <textarea id="comment" name="comments" rows="5" cols="100" class="p ms-2" placeholder="<?php echo $book->comments ?>"></textarea>
+                    <div class="d-flex flex-row align-items-center ">
+                        <textarea id="comment" name="comments" rows="5" cols="155" class="border-0 border-bottom border-secondary p"><?= $book->comments ?></textarea>
                     </div>
                     
 
@@ -80,33 +75,6 @@
 
     </div>
 
-    <script>
-        const container = document.getElementById('starRating');
-        const input = document.getElementById('ratingInput');
-        let currentRating = +document.getElementById('ratingInput').value || 0;
-
-        container.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.star-half-wrap').forEach(s => {
-                s.classList.toggle('lit', +s.dataset.value <= currentRating);
-            });
-        });
-
-        container.addEventListener('mouseover', e => {
-            const star = e.target.closest('.star-half-wrap');
-            if (!star) return;
-            const v = +star.dataset.value;
-            document.querySelectorAll('.star-half-wrap').forEach(s => {
-                s.classList.toggle('lit', +s.dataset.value <= v);
-            });
-        });
-
-        container.addEventListener('click', e => {
-            const star = e.target.closest('.star-half-wrap');
-            if (!star) return;
-            currentRating = +star.dataset.value;
-            input.value = currentRating;
-            console.log('Clicked, rating set to:', currentRating);
-        });
-    </script>
+    <script src="resources/rating_stars.js"></script>
 </body>
 </html>
