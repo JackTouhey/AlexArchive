@@ -1,0 +1,29 @@
+.star-container {
+    display: inline-flex; 
+    margin-left: 0.25em;
+    width: 2rem;
+    height: 5rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.star-half-wrap {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(80%) sepia(10%) saturate(200%) hue-rotate(180deg);
+    transition: filter 0.1s;
+}
+
+.star-half-wrap.lit {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(60%) saturate(800%) hue-rotate(5deg) brightness(105%);
+}
+
+.mirrored {
+    transform: scaleX(-1);
+}
+
+.title {
+     font-size: 5rem;
+}

@@ -6,14 +6,23 @@
     <title>Alex Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/header.css" rel="stylesheet">
+    <link href="resources/book_rating.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <?php
-        $bookId = intval($_POST["book_id"]);
-        include __DIR__ . "\session_utils\get_book.php";
+        $bookId = null;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $bookId = intval($_POST["book_id"]);
+        } else {
+            session_start();
+            $bookId = intval($_SESSION['book_id']);
+        }
+        include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . "\session_utils\book_display_utils.php";
         $book = getBook($bookId);
+        $rating = $book->rating;
     ?>
 
 
@@ -42,11 +51,23 @@
                         <button type="submit" class="btn btn-primary rounded-pill">Edit</button>
                     </form>
 
-                    <div class="fw-bold fs-1 mb-2"><?= $book->title; ?></div>
-                    <div class="fs-3 mb-2"><?= "By: " . $book->author; ?></div>
-                    <div class="fs-3 mb-2"><?= "Rating: " . $book->rating; ?></div>
-                    <div class="fs-3 mb-2">Comments:</div>
-                    <div class="p"><?= $book->comments ?></div>
+                    <div class="fw-bold mb-2 title"><?= $book->title; ?></div>
+                    <div class="fs-3 mb-2"><?= $book->author; ?></div>
+
+                    <div class="d-flex flex-row justify-content-start mt-3" id="starRating">
+                        <?php for ($i = 1; $i <= 10; $i += 2): ?>
+                            <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap <?= $i <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap mirrored <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i + 1 ?>">
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+
+                    <div class="p mt-4"><?= $book->comments ?></div>
                 </div>
                 
                 <!-- Cover display -->
@@ -59,5 +80,4 @@
         <div class="col-1"></div>
 
     </div>
-</body>
 </html>

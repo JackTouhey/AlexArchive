@@ -9,13 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $rating = htmlspecialchars($_POST["rating"]);
     $comments = htmlspecialchars($_POST["comments"]);
     $status = intval($_POST["status"]);
-
-    echo $id . "<br>";
-    echo $title . "<br>";
-    echo $author . "<br>";
-    echo $rating . "<br>";
-    echo $comments . "<br>";
-    echo $status . "<br>";
     
     include __DIR__ . "/../session_utils/get_connection.php";
     $conn = getConnection();
@@ -53,16 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $query .= " WHERE id=$" . $index;
     $values[] = $id;
 
-    echo $query;
-
     pg_prepare($conn, "update_query", $query);
     $result = pg_execute($conn, "update_query", $values);
 
-    if (!$result) {
-        echo pg_last_error();
-    }
-
+    session_start();
+    $_SESSION['book_id'] = $id;
 }
 
-header("Location: ../library.php");
+header("Location: ../book_display.php");
 ?>
