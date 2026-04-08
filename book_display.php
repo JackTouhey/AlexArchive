@@ -6,7 +6,7 @@
     <title>Alex Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/header.css" rel="stylesheet">
-    <link href="resources/book_display.css" rel="stylesheet">
+    <link href="resources/book_rating.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -22,6 +22,7 @@
         include __DIR__ . "\session_utils\generic_utils.php";
         include __DIR__ . "\session_utils\book_display_utils.php";
         $book = getBook($bookId);
+        $rating = $book->rating;
     ?>
 
 
@@ -50,12 +51,23 @@
                         <button type="submit" class="btn btn-primary rounded-pill">Edit</button>
                     </form>
 
-                    <div class="fw-bold fs-1 mb-2"><?= $book->title; ?></div>
-                    <div class="fs-3 mb-2"><?= "By: " . $book->author; ?></div>
+                    <div class="fw-bold mb-2 title"><?= $book->title; ?></div>
+                    <div class="fs-3 mb-2"><?= $book->author; ?></div>
 
-                    <?= getStarsFromRating($book->rating); ?>
+                    <div class="d-flex flex-row justify-content-start mt-3" id="starRating">
+                        <?php for ($i = 1; $i <= 10; $i += 2): ?>
+                            <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap <?= $i <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i ?>">
+                                <img src="resources/images/half-star.svg"
+                                    class="star-half-wrap mirrored <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
+                                    data-value="<?= $i + 1 ?>">
+                            </div>
+                        <?php endfor; ?>
+                    </div>
 
-                    <div class="p"><?= $book->comments ?></div>
+                    <div class="p mt-4"><?= $book->comments ?></div>
                 </div>
                 
                 <!-- Cover display -->
@@ -68,27 +80,4 @@
         <div class="col-1"></div>
 
     </div>
-
-    <script>
-        const stars = document.querySelectorAll('.star-half-wrap');
-        const input = document.getElementById('ratingInput');
-        let currentRating = <?= $rating ?>;
-
-        document.getElementById('starRating').addEventListener('mouseleave', () => {
-            stars.forEach(s => s.classList.toggle('lit', +s.dataset.value <= currentRating));
-        });
-
-        stars.forEach(star => {
-            star.addEventListener('mouseenter', () => {
-                const v = +star.dataset.value;
-                stars.forEach(s => s.classList.toggle('lit', +s.dataset.value <= v));
-            });
-
-            star.addEventListener('click', () => {
-                currentRating = +star.dataset.value;
-                input.value = currentRating;
-            });
-        });
-    </script>
-</body>
 </html>

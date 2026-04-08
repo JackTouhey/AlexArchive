@@ -51,13 +51,12 @@
 
                         <div class="d-flex flex-row justify-content-start" id="starRating">
                             <?php for ($i = 1; $i <= 10; $i += 2): ?>
-                                <div class="star-container mx-4">
-
+                                <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
                                     <img src="resources/images/half-star.svg"
-                                        class="star-half-wrap <?= $i <= $rating ? 'lit' : '' ?>"
+                                        class="star-half-wrap pointer <?= $i <= $rating ? 'lit' : '' ?>"
                                         data-value="<?= $i ?>">
                                     <img src="resources/images/half-star.svg"
-                                        class="star-half-wrap mirrored <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
+                                        class="star-half-wrap mirrored pointer <?= ($i + 1) <= $rating ? 'lit' : '' ?>"
                                         data-value="<?= $i + 1 ?>">
                                 </div>
                             <?php endfor; ?>

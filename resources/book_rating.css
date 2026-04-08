@@ -5,11 +5,13 @@
     height: 5rem;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .star-half-wrap {
     width: 100%;
     height: 100%;
-    cursor: pointer;
-    /* SVG recoloring — filter approximates #f5a623 when lit */
     filter: brightness(0) saturate(100%) invert(80%) sepia(10%) saturate(200%) hue-rotate(180deg);
     transition: filter 0.1s;
 }
@@ -20,4 +22,8 @@
 
 .mirrored {
     transform: scaleX(-1);
+}
+
+.title {
+     font-size: 5rem;
 }
