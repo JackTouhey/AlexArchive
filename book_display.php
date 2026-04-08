@@ -53,7 +53,7 @@
                     <div class="fw-bold fs-1 mb-2"><?= $book->title; ?></div>
                     <div class="fs-3 mb-2"><?= "By: " . $book->author; ?></div>
 
-                    <?php getStarsFromRating($book->rating) ?>
+                    <?= getStarsFromRating($book->rating); ?>
 
                     <div class="p"><?= $book->comments ?></div>
                 </div>
@@ -68,5 +68,27 @@
         <div class="col-1"></div>
 
     </div>
+
+    <script>
+        const stars = document.querySelectorAll('.star-half-wrap');
+        const input = document.getElementById('ratingInput');
+        let currentRating = <?= $rating ?>;
+
+        document.getElementById('starRating').addEventListener('mouseleave', () => {
+            stars.forEach(s => s.classList.toggle('lit', +s.dataset.value <= currentRating));
+        });
+
+        stars.forEach(star => {
+            star.addEventListener('mouseenter', () => {
+                const v = +star.dataset.value;
+                stars.forEach(s => s.classList.toggle('lit', +s.dataset.value <= v));
+            });
+
+            star.addEventListener('click', () => {
+                currentRating = +star.dataset.value;
+                input.value = currentRating;
+            });
+        });
+    </script>
 </body>
 </html>
