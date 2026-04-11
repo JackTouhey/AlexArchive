@@ -14,7 +14,7 @@
     <?php
         $bookId = intval($_POST["book_id"]);
         include __DIR__ . "\session_utils\generic_utils.php";
-        include __DIR__ . "\model\status_ids.php";
+        include __DIR__ . "/model/status_ids.php";
         $book = getBook($bookId);
         $rating = isset($book->rating) ? intval($book->rating) : 0;
         $status = isset($book->status) ? intval($book->status) : -1;
@@ -48,7 +48,7 @@
                     <input id="author" type="text" name="author" class="fs-3 mb-2 border-0 border-bottom border-secondary" value="<?php echo $book->author ?>">
 
 
-                    <div class="d-flex flex-row justify-content-start" id="starRating">
+                    <div class="d-flex flex-row justify-content-start mb-3" id="starRating">
                         <?php for ($i = 1; $i <= 10; $i += 2): ?>
                             <div class="star-container <?=  $i == 1 ? 'me-4' : 'mx-4' ?>">
                                 <img src="resources/images/half-star.svg"
@@ -61,10 +61,14 @@
                         <?php endfor; ?>
                     </div>
 
-                    <div class="d-flex flex-row justify-content-evenly">
-                        <button type="button" id="finishedButton" class="pointer button">Finished</button>
-                        <button type="button" id="inProgressButton" class="pointer button">In Progress</button>
-                        <button type="button" id="DNFButton" class="pointer button">Finished</button>
+                    <div class="d-flex flex-row justify-content-evenly mt-3">
+                        <!-- TODO: Figure out how to use enum class for below data-values -->
+                        <button type="button" id="finishedButton" data-value="1"
+                                class="pointer btn status-button <?= $status == STATUS_ID::Finished->value ? 'btn-primary' : 'btn-secondary' ?>">Finished</button>
+                        <button type="button" id="inProgressButton" data-value="2"
+                                class="pointer btn status-button <?= $status == STATUS_ID::In_Progress->value ? 'btn-primary' : 'btn-secondary' ?>">In Progress</button>
+                        <button type="button" id="DNFButton" data-value="3"
+                                class="pointer btn status-button <?= $status == STATUS_ID::DNF->value ? 'btn-primary' : 'btn-secondary' ?>">DNF</button>
                     </div>
                     
                     <div class="col-12" style="height: 2.5rem;"></div>
@@ -85,42 +89,6 @@
     </div>
 
     <script src="resources/rating_stars.js"></script>
-    <script>
-        const finishedButton = document.getElementById('finishedButton');
-        const inProgressButton = document.getElementById('inProgressButton');
-        const DNFButton = document.getElementById('DNFButton');
-        const statusInput = document.getElementById('statusInput');
-
-        const finishedId = 1;
-        const inProgressId = 2;
-        const DNFId = 3;
-
-        function setActiveButton(activeBtn) {
-            [finishedButton, inProgressButton, DNFButton].forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-secondary');
-            });
-            activeBtn.classList.remove('btn-secondary');
-            activeBtn.classList.add('btn-primary');
-        }
-
-        finishedButton.addEventListener("click", e => {
-            statusInput.value = finishedId;
-            setActiveButton(finishedButton);
-            console.log('Status updated to:', statusInput.value);
-        });
-
-        inProgressButton.addEventListener("click", e => {
-            statusInput.value = inProgressId;
-            setActiveButton(inProgressButton);
-            console.log('Status updated to:', statusInput.value);
-        });
-
-        DNFButton.addEventListener("click", e => {
-            statusInput.value = DNFId;
-            setActiveButton(DNFButton);
-            console.log('Status updated to:', statusInput.value);
-        });
-    </script>
+    <script src="resources/status_buttons.js"></script>
 </body>
 </html>
