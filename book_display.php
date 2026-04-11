@@ -21,6 +21,7 @@
         }
         include __DIR__ . "\session_utils\generic_utils.php";
         include __DIR__ . "\session_utils\book_display_utils.php";
+        include __DIR__ . "/model/status_ids.php";
         $book = getBook($bookId);
         $rating = $book->rating;
     ?>
@@ -66,6 +67,8 @@
                             </div>
                         <?php endfor; ?>
                     </div>
+
+                    <div class="fs-3 mt-3"><?= STATUS_ID::getDisplayFromInt($book->status); ?></div>
 
                     <div class="p mt-4"><?= $book->comments ?></div>
                 </div>

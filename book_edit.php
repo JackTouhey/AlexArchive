@@ -14,8 +14,10 @@
     <?php
         $bookId = intval($_POST["book_id"]);
         include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . "\model\status_ids.php";
         $book = getBook($bookId);
         $rating = isset($book->rating) ? intval($book->rating) : 0;
+        $status = isset($book->status) ? intval($book->status) : -1;
     ?>
 
     <div class="col-12 d-flex">
@@ -40,6 +42,7 @@
                 <form action="form_handlers/update_book.php" method="post" class="col-8 d-flex flex-column justify-content-start p-4">
                     <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
                     <input type="hidden" name="rating" id="ratingInput" value="<?= $rating ?>">
+                    <input type="hidden" name="status" id="statusInput" value="<?= $status ?>">
                     
                     <input id="title" type="text" name="title" class="fw-bold title mb-2 border-0 border-bottom border-secondary" value="<?php echo $book->title ?>">
                     <input id="author" type="text" name="author" class="fs-3 mb-2 border-0 border-bottom border-secondary" value="<?php echo $book->author ?>">
@@ -56,6 +59,12 @@
                                     data-value="<?= $i + 1 ?>">
                             </div>
                         <?php endfor; ?>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-evenly">
+                        <button type="button" id="finishedButton" class="pointer button">Finished</button>
+                        <button type="button" id="inProgressButton" class="pointer button">In Progress</button>
+                        <button type="button" id="DNFButton" class="pointer button">Finished</button>
                     </div>
                     
                     <div class="col-12" style="height: 2.5rem;"></div>
@@ -76,5 +85,42 @@
     </div>
 
     <script src="resources/rating_stars.js"></script>
+    <script>
+        const finishedButton = document.getElementById('finishedButton');
+        const inProgressButton = document.getElementById('inProgressButton');
+        const DNFButton = document.getElementById('DNFButton');
+        const statusInput = document.getElementById('statusInput');
+
+        const finishedId = 1;
+        const inProgressId = 2;
+        const DNFId = 3;
+
+        function setActiveButton(activeBtn) {
+            [finishedButton, inProgressButton, DNFButton].forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+            });
+            activeBtn.classList.remove('btn-secondary');
+            activeBtn.classList.add('btn-primary');
+        }
+
+        finishedButton.addEventListener("click", e => {
+            statusInput.value = finishedId;
+            setActiveButton(finishedButton);
+            console.log('Status updated to:', statusInput.value);
+        });
+
+        inProgressButton.addEventListener("click", e => {
+            statusInput.value = inProgressId;
+            setActiveButton(inProgressButton);
+            console.log('Status updated to:', statusInput.value);
+        });
+
+        DNFButton.addEventListener("click", e => {
+            statusInput.value = DNFId;
+            setActiveButton(DNFButton);
+            console.log('Status updated to:', statusInput.value);
+        });
+    </script>
 </body>
 </html>
