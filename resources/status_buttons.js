@@ -19,7 +19,6 @@ finishedButton.addEventListener("click", e => {
             statusButton.classList.add('btn-secondary');
         };
     });
-    console.log('Status updated to:', statusInput.value);
 });
 
 inProgressButton.addEventListener("click", e => {
@@ -33,7 +32,6 @@ inProgressButton.addEventListener("click", e => {
             statusButton.classList.add('btn-secondary');
         };
     });
-    console.log('Status updated to:', statusInput.value);
 });
 
 DNFButton.addEventListener("click", e => {
@@ -47,5 +45,4 @@ DNFButton.addEventListener("click", e => {
             statusButton.classList.add('btn-secondary');
         };
     });
-    console.log('Status updated to:', statusInput.value);
 });

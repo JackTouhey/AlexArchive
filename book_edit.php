@@ -13,7 +13,7 @@
 
     <?php
         $bookId = intval($_POST["book_id"]);
-        include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . "/session_utils/generic_utils.php";
         include __DIR__ . "/model/status_ids.php";
         $book = getBook($bookId);
         $rating = isset($book->rating) ? intval($book->rating) : 0;
