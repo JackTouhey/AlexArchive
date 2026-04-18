@@ -37,7 +37,7 @@
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row align-items-center me-0">
                     <a href="library.php"><i class="fa-solid fa-house fa-lg icon"></i></a>
-                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
+                    <a href="search_page.php"><i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i></a>
                     <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
                 </div>
             </div>

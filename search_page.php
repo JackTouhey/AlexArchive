@@ -13,12 +13,13 @@
     <?php 
         include __DIR__ . "\session_utils\get_library.php";
         include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . "\model\search_columns.php";
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        $library = $_SERVER["REQUEST_METHOD"] == "POST" ? searchLibrary() : getLibrary();        
+        $library = isset($_SESSION["searched_books"]) ? $_SESSION["searched_books"] : getLibrary();        
     ?>
 
     <div class="col-12 d-flex">
@@ -37,8 +38,50 @@
 
             <!-- Search  -->
              <div class="col-12 d-flex flex-row justify-content-evenly">
-                <form action="search_handler.php" 
+                <form action="form_handlers/search_handler.php" method="POST">
+                    <select name="search_column">
+                        <option value="<?= SEARCH_COLUMNS::ALL->value ?>">All</option>
+                        <option value="<?= SEARCH_COLUMNS::TITLE->value ?>">Title</option>
+                        <option value="<?= SEARCH_COLUMNS::AUTHOR->value ?>">Author</option>
+                    </select>
+
+                    <input type="text" name="search_value">
+                    <button type="submit" class="btn btn-primary rounded-pill mt-2">Submit</button>
+                </form>
              </div>
+
+             <!-- Results -->
+            <div class="col-12 d-flex flex-column">
+                <?php foreach ($library as $book):
+                    $title = $book->title;
+                    $author = $book->author;
+                    $id = $book->id;
+                    $backgroundColour = $book->colour;
+                    $textColour = contrastColour($book->colour);
+                ?>
+                <form class="col-12 d-flex flex-row justify-content-evenly" method="POST" action="book_display.php" class="col-1 ps-1 ms-1"
+                        style="background-color:<?= $backgroundColour ?>; color:<?= $textColour ?>;">
+                    <input type="hidden" name="book_id" value="<?= $id ?>">
+                    
+                    <div class="col-10 d-flex flex-row justify-content-between">
+                        <div class="col-8 fw-b fs-3">
+                            <?= $title ?>
+                        </div>
+                        <div class="col-4 fw-b fs-4">
+                            <?= $author ?>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit">Select</button>
+                    </div>
+
+                    
+                    
+                        
+                    </button>
+                </form>
+                <?php endforeach; ?>
+            </div>
         <div class="col-1"></div>
 
     </div>
