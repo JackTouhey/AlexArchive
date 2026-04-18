@@ -8,13 +8,17 @@
         $query = "SELECT id, title, author, colour FROM books WHERE";
 
         $query = match($searchColumn) {
-            SEARCH_COLUMNS::ALL->value => $query . "title LIKE %$1% OR author like %$1% ORDER BY id",
-            SEARCH_COLUMNS::TITLE->value => $query . "title LIKE %$1% ORDER BY id",
-            SEARCH_COLUMNS::AUTHOR->value => $query . "authopr like %$1% ORDER BY id",
+            SEARCH_COLUMNS::ALL->value => $query . " title LIKE $1 OR author like $1 ORDER BY id",
+            SEARCH_COLUMNS::TITLE->value => $query . " title LIKE $1 ORDER BY id",
+            SEARCH_COLUMNS::AUTHOR->value => $query . " author like $1 ORDER BY id",
         };
 
+        $value = [
+            "%" . $searchValue . "%"
+        ];
+
         pg_prepare($conn, "search_query", $query);
-        $result = pg_execute($conn, "insert_query", $values);
+        $result = pg_execute($conn, "search_query", $value);
 
         $books = [];
         while ($row = pg_fetch_row($result)) {

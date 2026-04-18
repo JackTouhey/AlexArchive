@@ -14,6 +14,7 @@
         include __DIR__ . "\session_utils\get_library.php";
         include __DIR__ . "\session_utils\generic_utils.php";
         include __DIR__ . "\model\search_columns.php";
+        include __DIR__ . "\model\book.php";
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -31,6 +32,7 @@
             <div class="row d-flex flex-row justify-content-evenly">
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row align-items-center me-0">
+                    <a href="library.php"><i class="fa-solid fa-house fa-lg icon"></i></a>
                     <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
                     <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
                 </div>
@@ -74,11 +76,6 @@
                     <div class="col-2">
                         <button type="submit">Select</button>
                     </div>
-
-                    
-                    
-                        
-                    </button>
                 </form>
                 <?php endforeach; ?>
             </div>
