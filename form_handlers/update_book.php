@@ -1,7 +1,5 @@
 <?php
 
-use LDAP\Result;
-
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $id = intval($_POST["book_id"]);
     $title = htmlspecialchars($_POST["title"]);   

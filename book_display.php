@@ -21,6 +21,7 @@
         }
         include __DIR__ . "\session_utils\generic_utils.php";
         include __DIR__ . "\session_utils\book_display_utils.php";
+        include __DIR__ . "/model/status_ids.php";
         $book = getBook($bookId);
         $rating = $book->rating;
     ?>
@@ -36,7 +37,7 @@
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row align-items-center me-0">
                     <a href="library.php"><i class="fa-solid fa-house fa-lg icon"></i></a>
-                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
+                    <a href="search_page.php"><i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i></a>
                     <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
                 </div>
             </div>
@@ -66,6 +67,8 @@
                             </div>
                         <?php endfor; ?>
                     </div>
+
+                    <div class="fs-3 mt-3"><?= STATUS_ID::getDisplayFromInt($book->status); ?></div>
 
                     <div class="p mt-4"><?= $book->comments ?></div>
                 </div>

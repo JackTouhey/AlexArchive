@@ -12,8 +12,10 @@
 </head>
 <body>
     <?php
-        include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . "/session_utils/generic_utils.php";
+        include __DIR__ . "/model/status_ids.php";
         $rating = 10;
+        $status = STATUS_ID::In_Progress->value;
     ?>
 
     <div class="col-12 d-flex">
@@ -26,7 +28,7 @@
                 <div class="fs-2 col-11 mp-2 d-flex justify-content-center">Alex's Archive</div>
                 <div class="col-1 d-flex flex-row align-items-center me-0">
                     <a href="library.php"><i class="fa-solid fa-house fa-lg icon"></i></a>
-                    <i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i>
+                    <a href="search_page.php"><i class="fa-solid fa-magnifying-glass fa-lg mp-2 icon"></i></a>
                     <a href="new_book.php"><i class="fa-regular fa-square-plus fa-xl mp-2 icon"></i></a>
                 </div>
             </div>
@@ -37,6 +39,7 @@
                 <!-- Book Details -->
                 <form action="form_handlers/submit_new_book.php" method="post" class="col-8 d-flex flex-column justify-content-start p-4">
                     <input type="hidden" name="rating" id="ratingInput" value="<?= $rating ?>">
+                    <input type="hidden" name="status" id="statusInput" value="<?= $status ?>">
                     
                     <input id="title" type="text" name="title" class="fs-1 fw-bold form-control-lg mb-2 border-0 border-bottom border-secondary" placeholder="Title">
                     <input id="author" type="text" name="author" class="fs-4 form-control-lg mb-2 border-0 border-bottom border-secondary" placeholder="Author">
@@ -56,6 +59,16 @@
                     </div>
                     
                     <div class="col-12" style="height: 2.5rem;"></div>
+
+                    <div class="d-flex flex-row justify-content-evenly mt-3">
+                        <!-- TODO: Figure out how to use enum class for below data-values -->
+                        <button type="button" id="finishedButton" data-value="1"
+                                class="pointer btn status-button <?= $status == STATUS_ID::Finished->value ? 'btn-primary' : 'btn-secondary' ?>">Finished</button>
+                        <button type="button" id="inProgressButton" data-value="2"
+                                class="pointer btn status-button <?= $status == STATUS_ID::In_Progress->value ? 'btn-primary' : 'btn-secondary' ?>">In Progress</button>
+                        <button type="button" id="DNFButton" data-value="3"
+                                class="pointer btn status-button <?= $status == STATUS_ID::DNF->value ? 'btn-primary' : 'btn-secondary' ?>">DNF</button>
+                    </div>
 
                     <div class="d-flex flex-row align-items-center ">
                         <textarea id="comment" name="comments" rows="5" cols="155" class="border-0 border-bottom border-secondary p" placeholder="Comments" ></textarea>
@@ -79,6 +92,7 @@
     </div>
 
     <script src="resources/rating_stars.js"></script>
+    <script src="resources/status_buttons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
