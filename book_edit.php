@@ -9,6 +9,8 @@
     <link href="resources/book_rating.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 <body>
 
@@ -93,11 +95,11 @@
                                     <h1 class="modal-title fs-5" id="uploadModalLabel">Upload cover</h1>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- form goes here -->
+                                    <p>Please note: Uploading a cover will cause any unsaved changes to be discarded</p>
+                                    <form action="form_handlers/cover_upload.php" method="post" class="dropzone" id="my-dropzone"></form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
