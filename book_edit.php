@@ -8,6 +8,7 @@
     <link href="resources/header.css" rel="stylesheet">
     <link href="resources/book_rating.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -81,6 +82,29 @@
                     <button type="submit" class="btn btn-primary rounded-pill mt-2">Submit</button>
                 </form>
 
+                <!-- Cover Upload -->
+                <div class="col-4 d-flex flex-row justify-content-center align-items-center">
+                    <button type="button" class="btn btn-primary" style="height: 3rem;" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload cover</button>
+
+                    <div class="modal fade" id="uploadModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="uploadModalLabel">Upload cover</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- form goes here -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                      
             </div>
         </div>
 

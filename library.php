@@ -36,7 +36,7 @@
             foreach ($rows as $rowIndex => $rowBooks): 
             ?>
 
-            <div class="col-12 d-flex flex-row justify-content-start">
+            <div class="col-12 d-flex flex-row justify-content-center">
                 <?php
                     foreach ($rowBooks as $book): 
                         $title = $book->title;
