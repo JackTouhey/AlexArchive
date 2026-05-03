@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/header.css" rel="stylesheet">
     <link href="resources/book_rating.css" rel="stylesheet">
+    <link href="resources/covers.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -74,7 +75,7 @@
                 </div>
                 
                 <!-- Cover display -->
-                <div class="col-4">
+                <div class="col-4 d-flex justify-content-center">
                     <?php 
                         $coversDirectory = "resources/covers/" . $bookId;
                         $coverPath = null;
@@ -89,7 +90,7 @@
                         }
 
                         if ($coverPath != null) {
-                            echo '<img src="' . $coverPath . '">';
+                            echo '<img src="' . $coverPath . '" class="cover">';
                         }
 
                     ?>
