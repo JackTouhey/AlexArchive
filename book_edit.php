@@ -96,7 +96,9 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Please note: Uploading a cover will cause any unsaved changes to be discarded</p>
-                                    <form action="form_handlers/cover_upload.php" method="post" class="dropzone" id="my-dropzone"></form>
+                                    <form action="form_handlers/cover_upload.php" method="post" class="dropzone" id="my-dropzone">
+                                        <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
