@@ -75,7 +75,24 @@
                 
                 <!-- Cover display -->
                 <div class="col-4">
+                    <?php 
+                        $coversDirectory = "resources/covers/" . $bookId;
+                        $coverPath = null;
+                        if (file_exists($coversDirectory . '.jpg')) {
+                            $coverPath = $coversDirectory . '.jpg';
+                        } else if (file_exists($coversDirectory . '.png')) {
+                            $coverPath = $coversDirectory . '.png';
+                        } else if (file_exists($coversDirectory . '.svg')) {
+                            $coverPath = $coversDirectory . '.svg';
+                        } else if (file_exists($coversDirectory . '.webp')) {
+                            $coverPath = $coversDirectory . '.webp';
+                        }
 
+                        if ($coverPath != null) {
+                            echo '<img src="' . $coverPath . '">';
+                        }
+
+                    ?>
                 </div>
             </div>
         </div>
