@@ -20,9 +20,9 @@
             session_start();
             $bookId = intval($_SESSION['book_id']);
         }
-        include __DIR__ . "\session_utils\generic_utils.php";
-        include __DIR__ . "\session_utils\book_display_utils.php";
-        include __DIR__ . "/model/status_ids.php";
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR  . 'generic_utils.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'book_display_utils.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'status_ids.php';
         $book = getBook($bookId);
         $rating = $book->rating;
     ?>

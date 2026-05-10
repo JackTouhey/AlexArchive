@@ -11,8 +11,8 @@
 </head>
 <body>
     <?php 
-        include __DIR__ . "\session_utils\get_library.php";
-        include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'get_library.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'generic_utils.php';
         $library = getLibrary();
     ?>
 

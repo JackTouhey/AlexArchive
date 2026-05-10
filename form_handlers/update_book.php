@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $comments = htmlspecialchars($_POST["comments"]);
     $status = intval($_POST["status"]);
     
-    include __DIR__ . "/../session_utils/get_connection.php";
+    include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'get_connection.php';
     $conn = getConnection();
 
     $query = "UPDATE books SET "; 
