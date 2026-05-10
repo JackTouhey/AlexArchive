@@ -1,8 +1,8 @@
 <?php
     function searchLibrary(int $searchColumn, string $searchValue) {
-        include __DIR__ . "/get_connection.php";
-        include __DIR__ . "/../model/book.php";
-        include __DIR__ . "/../model/search_columns.php";
+        require_once __DIR__ . "/get_connection.php";
+        require_once __DIR__ . "/../model/book.php";
+        require_once __DIR__ . "/../model/search_columns.php";
         $conn = getConnection();
 
         $query = "SELECT id, title, author, colour FROM books WHERE";

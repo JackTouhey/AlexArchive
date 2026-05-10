@@ -8,13 +8,16 @@
     <link href="resources/header.css" rel="stylesheet">
     <link href="resources/book_rating.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c057f0eb33.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 </head>
 <body>
 
     <?php
         $bookId = intval($_POST["book_id"]);
-        include __DIR__ . "/session_utils/generic_utils.php";
-        include __DIR__ . "/model/status_ids.php";
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'generic_utils.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'status_ids.php';
         $book = getBook($bookId);
         $rating = isset($book->rating) ? intval($book->rating) : 0;
         $status = isset($book->status) ? intval($book->status) : -1;
@@ -81,6 +84,31 @@
                     <button type="submit" class="btn btn-primary rounded-pill mt-2">Submit</button>
                 </form>
 
+                <!-- Cover Upload -->
+                <div class="col-4 d-flex flex-row justify-content-center align-items-center">
+                    <button type="button" class="btn btn-primary" style="height: 3rem;" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload cover</button>
+
+                    <div class="modal fade" id="uploadModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="uploadModalLabel">Upload cover</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Please note: Uploading a cover will cause any unsaved changes to be discarded</p>
+                                    <form action="form_handlers/cover_upload.php" method="post" class="dropzone" id="my-dropzone">
+                                        <input type="hidden" name="book_id" value="<?= htmlspecialchars($bookId) ?>">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                      
             </div>
         </div>
 

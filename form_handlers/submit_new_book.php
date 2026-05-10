@@ -8,7 +8,7 @@
     $colour = htmlspecialchars($_POST["colour"]);
     $status = htmlspecialchars($_POST['status']);
     
-    include __DIR__ . "/../session_utils/get_connection.php";
+    include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'get_connection.php';
     $conn = getConnection();
 
     $query = "INSERT INTO books (title, author, rating, comments, colour, status) VALUES ($1, $2, $3, $4, $5, $6)";

@@ -1,7 +1,7 @@
 <?php
     function getBook(int $id) {
-        include __DIR__ . "/get_connection.php";
-        include __DIR__ . "/../model/book.php";
+        require_once __DIR__ . "/get_connection.php";
+        require_once __DIR__ . "/../model/book.php";
         $conn = getConnection();
 
         $query = "SELECT id, title, author, rating, comments, status FROM books WHERE id = $1";

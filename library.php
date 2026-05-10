@@ -11,8 +11,8 @@
 </head>
 <body>
     <?php 
-        include __DIR__ . "\session_utils\get_library.php";
-        include __DIR__ . "\session_utils\generic_utils.php";
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'get_library.php';
+        include __DIR__ . DIRECTORY_SEPARATOR . 'session_utils' . DIRECTORY_SEPARATOR . 'generic_utils.php';
         $library = getLibrary();
     ?>
 
@@ -36,7 +36,7 @@
             foreach ($rows as $rowIndex => $rowBooks): 
             ?>
 
-            <div class="col-12 d-flex flex-row justify-content-start">
+            <div class="col-12 d-flex flex-row justify-content-center">
                 <?php
                     foreach ($rowBooks as $book): 
                         $title = $book->title;

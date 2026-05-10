@@ -11,10 +11,10 @@
 </head>
 <body>
     <?php 
-        include __DIR__ . "\session_utils\get_library.php";
-        include __DIR__ . "\session_utils\generic_utils.php";
-        include __DIR__ . "\model\search_columns.php";
-        include __DIR__ . "\model\book.php";
+        require_once __DIR__ . "\session_utils\get_library.php";
+        require_once __DIR__ . "\session_utils\generic_utils.php";
+        require_once __DIR__ . "\model\search_columns.php";
+        require_once __DIR__ . "\model\book.php";
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
